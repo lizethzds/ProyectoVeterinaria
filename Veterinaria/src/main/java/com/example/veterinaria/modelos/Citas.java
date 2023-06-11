@@ -1,48 +1,62 @@
 package com.example.veterinaria.modelos;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class Citas {
+    private int idCita;
+    private Date fecha;
+    private Time hora;
+    private int id_mascota;
 
-    private int id;
-    private String nombre;
-    private String telefono;
-    private String especialidad;
+    private int id_veterinario;
 
-    public Citas(int id, String nombre, String telefono, String especialidad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.especialidad = especialidad;
+
+    public Citas(int idCita, Date fecha, Time hora, int id_mascota, int id_veterinario) {
+        this.idCita = idCita;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.id_mascota = id_mascota;
+        this.id_veterinario = id_veterinario;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCita() {
+        return idCita;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Time getHora() {
+        return hora;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
+    public int getId_mascota() {
+        return id_mascota;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setId_mascota(int id_mascota) {
+        this.id_mascota = id_mascota;
+    }
+
+    public int getId_veterinario() {
+        return id_veterinario;
+    }
+
+    public void setId_veterinario(int id_veterinario) {
+        this.id_veterinario = id_veterinario;
     }
 }
