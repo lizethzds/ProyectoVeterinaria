@@ -7,15 +7,22 @@ public class Citas {
     private int idCita;
     private Date fecha;
     private Time hora;
+
+
+    private int consultorio;
+
     private int id_mascota;
 
     private int id_veterinario;
 
 
-    public Citas(int idCita, Date fecha, Time hora, int id_mascota, int id_veterinario) {
+
+
+    public Citas(int idCita, Date fecha, Time hora, int consultorio ,int id_mascota, int id_veterinario) {
         this.idCita = idCita;
         this.fecha = fecha;
         this.hora = hora;
+        this.consultorio = consultorio;
         this.id_mascota = id_mascota;
         this.id_veterinario = id_veterinario;
     }
@@ -58,5 +65,13 @@ public class Citas {
 
     public void setId_veterinario(int id_veterinario) {
         this.id_veterinario = id_veterinario;
+    }
+
+    public int getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(int consultorio) {
+        this.consultorio = consultorio;
     }
 }
