@@ -33,7 +33,7 @@ public class VeterinarioController {
     }
 
 
-
+//Busqueda de veterinario por ID
     public Veterinario buscarPorID(int id)  throws Exception {
         Statement inst = conn.createStatement();
         ResultSet resultados = inst.executeQuery("select * from Veterinarios where id = "+id);
@@ -48,6 +48,73 @@ public class VeterinarioController {
 
         }
         return veterinario;
+    }
+
+
+//Agregar registro de veterinario
+    public boolean agregarVeterinario(Veterinario veterinario) {
+        if (validarVeterinario(veterinario)) {
+            try {
+
+               String valores = String.format("%d, %s,%s,%s", veterinario.getIdVet(),veterinario.getNombre(),veterinario.getTelefono(),veterinario.getEspecialidad());
+                String instSQL = "insert into Veterinarios (id,nombre,telefono,especialidad) values (" + valores + ")";
+                Statement inst = conn.createStatement();
+                inst.executeUpdate(instSQL);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        } else
+            return false;
+    }
+
+
+    //Validacion de veterinario
+
+    private boolean validarVeterinario(Veterinario veterinario) {
+        boolean correcto = true;
+        if (veterinario == null)
+            correcto = false;
+        else if (veterinario.getNombre().isBlank())
+            correcto = false;
+        else {
+            try {
+                String instSQL = String.format("select id from Veterinarios where id = '%s'",
+                        veterinario.getIdVet());
+                Statement inst = conn.createStatement();
+                ResultSet resultado = inst.executeQuery(instSQL);
+                correcto = !resultado.next();
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return  correcto;
+    }
+
+    //Modificar registro de veterinario
+    public boolean modificarVeterinario(Veterinario veterinario) {
+        try {
+
+            String valores = String.format("%d, %s,%s,%s", veterinario.getIdVet(),veterinario.getNombre(),veterinario.getTelefono(),veterinario.getEspecialidad());
+            String instSQL = String.format("update  Veterinario set %s where id = %d", valores, veterinario.getIdVet());
+            Statement inst = conn.createStatement();
+            inst.executeUpdate(instSQL);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+//Eliminar registro de veterinario
+    public boolean eliminarVeterinario(int id) {
+        try {
+            String instSQL = "delete from Veterinarios where id = "+id;
+            Statement inst = conn.createStatement();
+            inst.executeUpdate(instSQL);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
